@@ -3,6 +3,11 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
+        new Main().runCalculator();
+        return;
+    }
+
+    void runCalculator() {
         Scanner scanner = new Scanner(System.in);
         double num1 = 0, num2, result;
         String operator, continueCalculation = "";
@@ -22,7 +27,7 @@ class Main {
             }
 
             // Ask for the operator or "AC" to clear
-            System.out.print("Enter the operator (+, -, *, /) or 'AC' to clear: ");
+            System.out.print("Enter the command (add, subtract, multiply, divide) or 'AC' to clear: ");
             operator = scanner.next();
 
             // If the user types 'AC', reset the result and skip the current operation
@@ -38,31 +43,7 @@ class Main {
             num2 = scanner.nextDouble();
 
             // Perform calculation based on the operator
-            switch (operator) {
-                case "+":
-                    result = num1 + num2;
-                    System.out.println("Result: " + num1 + " + " + num2 + " = " + result);
-                    break;
-                case "-":
-                    result = num1 - num2;
-                    System.out.println("Result: " + num1 + " - " + num2 + " = " + result);
-                    break;
-                case "*":
-                    result = num1 * num2;
-                    System.out.println("Result: " + num1 + " * " + num2 + " = " + result);
-                    break;
-                case "/":
-                    if (num2 != 0) {
-                        result = num1 / num2;
-                        System.out.println("Result: " + num1 + " / " + num2 + " = " + result);
-                    } else {
-                        System.out.println("Error! Division by zero.");
-                    }
-                    break;
-                default:
-                    System.out.println("Invalid operator! Please use +, -, *, or /.");
-            }
-
+            result = calculate(operator, num1, num2);
             // Ask if the user wants to perform another operation
             System.out.print("Do you want to perform another operation? (yes/no): ");
             continueCalculation = scanner.next();
@@ -71,6 +52,37 @@ class Main {
 
         System.out.println("Thank you for using the calculator!");
         scanner.close();
+    }
+
+    double calculate(String operator, double num1, double num2) {
+        switch (operator) {
+            case "add":
+            case "+":
+                return num1 + num2;
+//                System.out.println("Result: " + num1 + " + " + num2 + " = " + result);
+//                break;
+            case "subtract":
+            case "-":
+                return num1 - num2;
+//                System.out.println("Result: " + num1 + " - " + num2 + " = " + result);
+//                break;
+            case "multiply":
+            case "*":
+                return num1 * num2;
+//                System.out.println("Result: " + num1 + " * " + num2 + " = " + result);
+//                break;
+            case "divide":
+            case "/":
+                if (num2 != 0) {
+                    return num1 / num2;
+//                    System.out.println("Result: " + num1 + " / " + num2 + " = " + result);
+                } else {
+                    System.out.println("Error! Division by zero.");
+                }
+                break;
+            default:
+                System.out.println("Invalid command! Please use add, subtract, multiply, divide22.");
+        }
     }
 }
 
